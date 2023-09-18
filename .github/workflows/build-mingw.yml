@@ -81,10 +81,11 @@ jobs:
             -DBUILD_SHARED_LIBS=ON \
             -Denable_cplusplus=ON \
             -Denable_docs=OFF \
-            -DCMAKE_CXX_FLAGS="-DPTW32_STATIC_LIB" \
+            -Ddefault_enable_threads=OFF \
             -DCMAKE_INSTALL_PREFIX="cmake-build/${{ env.cmakeInstallationPath }}" -B./cmake-build && \
             cd cmake-build && cmake --build . && cmake --install . 
-
+            
+  # -DCMAKE_CXX_FLAGS="-DGC_WIN32_THREADS" \
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
