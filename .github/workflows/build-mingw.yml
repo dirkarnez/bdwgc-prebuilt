@@ -81,6 +81,11 @@ jobs:
             -DBUILD_SHARED_LIBS=ON \
             -Denable_cplusplus=ON \
             -Denable_docs=OFF \
+            -DCMAKE_THREAD_LIBS_INIT=-lpthread ^
+            -DCMAKE_HAVE_THREADS_LIBRARY=1 ^
+            -DCMAKE_USE_WIN32_THREADS_INIT=0 ^
+            -DCMAKE_USE_PTHREADS_INIT=1 ^
+            -DTHREADS_PREFER_PTHREAD_FLAG=ON ^
             -DCMAKE_INSTALL_PREFIX="cmake-build/${{ env.cmakeInstallationPath }}" -B./cmake-build && \
             cd cmake-build && cmake --build . && cmake --install . 
 
