@@ -64,34 +64,24 @@ jobs:
 
       # - shell: msys2 {0}
       #   run: pkg-config --version
-        
-      # - name: set PATH, check mingw version, cmake generate, build and install
-      #   shell: msys2 {0}
-      #   run: |
-      #       workspace=$(pwd) &&
-      #       export PATH="$workspace/mingw64:$workspace/mingw64/bin:$workspace/msys64/usr/bin:/usr/bin" &&
-      #       cd gc &&
-      #       g++ --version && 
-      #       ./configure --help &&
-      #       ./configure --enable-static=yes --enable-shared=yes --disable-java-finalization --prefix="$(pwd)/${{ env.installationPath }}" &&
-      #       make install
 
+            # ./configure --help &&
+            # ./configure --enable-static=yes --enable-shared=yes --disable-java-finalization --prefix="$(pwd)/${{ env.installationPath }}" &&
+            # make install
+            
       - name: set PATH, check mingw version, cmake generate, build and install
-        shell: cmd
+        shell: msys2 {0}
         run: |
-            set PATH=^
-            ${{ github.workspace }}\mingw64;^
-            ${{ github.workspace }}\mingw64\bin;^
-            ${{ github.workspace }}\cmake-3.24.0-windows-x86_64\bin;
-            set CD_LINUX=%CD:\=/%
-            gcc --version &&^
-            cd bdwgc &&^
-            cmake.exe -G"MinGW Makefiles" ^
-            -DCMAKE_BUILD_TYPE=Release ^
-            -DBUILD_SHARED_LIBS=ON ^
-            -Denable_cplusplus=ON ^
-            -Denable_docs=OFF ^
-            -DCMAKE_INSTALL_PREFIX="cmake-build/${{ env.cmakeInstallationPath }}" -B./cmake-build &&^
+            workspace=$(pwd) &&
+            export PATH="$workspace/mingw64:$workspace/mingw64/bin:$workspace/msys64/usr/bin:/usr/bin:$workspace/cmake-3.24.0-windows-x86_64/bin" &&
+            cd bdwgc &&
+            g++ --version && 
+            cmake.exe -G"MinGW Makefiles" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -Denable_cplusplus=ON \
+            -Denable_docs=OFF \
+            -DCMAKE_INSTALL_PREFIX="cmake-build/${{ env.cmakeInstallationPath }}" -B./cmake-build && \
             cd cmake-build && cmake --build . && cmake --install . 
 
       - name: Archive Release
