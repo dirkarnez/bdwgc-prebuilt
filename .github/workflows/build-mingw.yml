@@ -56,7 +56,7 @@ jobs:
             cd gc &&
             g++ --version && 
             ./configure --help &&
-            ./configure --disable-rpath --enable-relocatable --prefix="$(pwd)/${{ env.installationPath }}" &&
+            ./configure --enable-static=yes --enable-shared=yes --disable-java-finalization --prefix="$(pwd)/${{ env.installationPath }}" &&
             make install
 
       - name: Archive Release
