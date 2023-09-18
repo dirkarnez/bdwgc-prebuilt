@@ -35,12 +35,12 @@ jobs:
       #   run: |
       #     curl https://www.hboehm.info/gc/gc_source/gc-8.2.2.tar.gz -L -O
       
-      # - name: Install MSYS2
-      #   uses: msys2/setup-msys2@v2
-      #   with:
-      #     update: true
-      #     msystem: MINGW64
-      #     install: git make autoconf automake libtool autogen perl patch gperf pkgconf
+      - name: Install MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          msystem: MINGW64
+          install: git make autoconf automake libtool autogen perl patch gperf pkgconf
           
       - name: download compiler
         shell: cmd
