@@ -83,7 +83,9 @@ jobs:
             cd bdwgc &&^
             cmake.exe -G"MinGW Makefiles" ^
             -DCMAKE_BUILD_TYPE=Release ^
-            -DBUILD_SHARED_LIBS=OFF ^
+            -DBUILD_SHARED_LIBS=ON ^
+            -Denable_cplusplus=ON ^
+            -Denable_docs=OFF ^
             -DCMAKE_INSTALL_PREFIX="cmake-build/${{ env.cmakeInstallationPath }}" -B./cmake-build &&^
             cd cmake-build && cmake --build . && cmake --install . 
 
