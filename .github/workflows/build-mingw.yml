@@ -81,7 +81,8 @@ jobs:
             -DBUILD_SHARED_LIBS=ON \
             -Denable_cplusplus=ON \
             -Denable_docs=OFF \
-            -Ddefault_enable_threads=OFF \
+            -Denable_threads=OFF \
+            -Denable_threads_discovery=OFF \
             -DCMAKE_INSTALL_PREFIX="cmake-build/${{ env.cmakeInstallationPath }}" -B./cmake-build && \
             cd cmake-build && cmake --build . && cmake --install . 
             
